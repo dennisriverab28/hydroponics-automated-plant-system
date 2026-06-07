@@ -1,0 +1,23 @@
+# STM32 build artifacts
+src/STM32/Debug/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.su
+*.cyclo
+
+# IDE
+.settings/
+*.launch
+
+# Arduino / PlatformIO
+.pio/
+*.ino.esp32.bin
+
+# OS
+.DS_Store
+Thumbs.db

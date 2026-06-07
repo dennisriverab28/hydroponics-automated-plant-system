@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Automated Watering Metrics</title>
+</head>
+<body>
+    <nav id="NavBar">
+        <h3>Automated Watering Metrics</h3>
+    </nav>
+
+    <div id="CurrentTimeContainer">
+        <h1 id="TimeValue">...</h1>
+    </div>
+
+    <div id="TopRowContainer">
+        <div id="MoistureLevelContainer">
+            <h3 id="MoistureLevelValue">Estimated Moisture: ...</h3>
+            <canvas id="MoistureLevelCanvas" width="200" height="50"></canvas>
+        </div>
+
+        <div id="NextWateringContainer">
+            <button id="ManualWaterButton" onclick="sendManualWaterCommand()">Manually Water</button>
+            <button id="ToggleLEDButton" onclick="sendToggleGrowLEDCommand()">Toggle Grow LEDs</button>
+        </div>
+    </div>
+
+    <div id="PowerConsumptionContainer">
+        <h3>Power Consumption</h3>
+        <canvas id="PowerCanvas" style="border:1px solid #000;"></canvas>
+    </div>
+
+    <div id="MoistureSensorDataContainer">
+        <h3>Measured Moisture</h3>
+        <canvas id="MoistureCanvas" style="border:1px solid #000;"></canvas>
+    </div>
+
+    <div id="TimingContainer">
+        <div id="WateringLogsContainer">
+            <h3>Watering Logs</h3>
+            <ul id="WateringLogsTimes"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

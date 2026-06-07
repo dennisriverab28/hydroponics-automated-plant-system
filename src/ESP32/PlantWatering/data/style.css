@@ -1,0 +1,113 @@
+body {
+  padding: 0;
+  margin: 0; /* It's also common to remove default browser margins */
+}
+
+#NavBar{
+    padding-left: 2%;
+    background-color: #535353;
+    color: white;
+}
+
+#NavBar h3{
+    margin: 0;
+    padding: 20px 0%;
+}
+
+#CurrentTimeContainer{
+    text-align: center;
+    font-size: 24px;
+    color: #535353;
+}
+
+#TopRowContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+#MoistureLevelContainer{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    text-align: center;
+    color: #535353;
+}
+
+#MoistureLevelCanvas{
+    width: 200px;
+    height: 50px;
+    border: 1px solid #535353;
+}
+
+#NextWateringContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    color: red;
+}
+#ManualWaterButton{
+    background-color: #535353;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 120%;
+    height: 42px;
+    margin-top: 8px;
+}
+
+#ToggleLEDButton:hover{
+    cursor:pointer;
+}
+
+#ToggleLEDButton{
+    background-color: #535353;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 120%;
+    height: 42px;
+    margin-top: 8px;
+}
+
+#ManualWaterButton:hover{
+    cursor:pointer;
+}
+
+#PowerConsumptionContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 40px;
+    color: #535353;
+}
+
+#PowerCanvas{
+    width: 400px;
+    height: 150px;
+    border: 1px solid #535353;;
+}
+
+#MoistureSensorDataContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 40px;
+    color: #535353;
+}
+
+#MoistureCanvas{
+    width: 400px;
+    height: 150px;
+    border: 1px solid #535353;;
+}
+
+#TimingContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding-top: 40px;
+    color: #535353;
+    padding-left: 5%;
+}
