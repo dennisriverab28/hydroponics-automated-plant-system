@@ -5,14 +5,14 @@
 <p align="center">
   <img src="https://img.shields.io/badge/STM32L476-03234B?logo=stmicroelectronics&logoColor=white" alt="STM32">
   <img src="https://img.shields.io/badge/ESP32-E7352C?logo=espressif&logoColor=white" alt="ESP32">
-  <img src="https://img.shields.io/badge/FreeRTOS-2BA94A" alt="FreeRTOS">
+  <img src="https://img.shields.io/badge/Scheduler-Custom%20Cooperative-2BA94A" alt="Custom cooperative scheduler">
   <img src="https://img.shields.io/badge/C-A8B9CC?logo=c&logoColor=black" alt="C">
   <img src="https://img.shields.io/badge/INA219-555" alt="INA219">
   <img src="https://img.shields.io/badge/status-complete-22c55e" alt="Status">
 </p>
 
 <p align="center">
-  A dual-microcontroller smart garden. An <b>STM32L476</b> runs custom FreeRTOS firmware for all
+  A dual-microcontroller smart garden. An <b>STM32L476</b> runs bare-metal firmware on a custom cooperative (time-triggered) scheduler for all
   sensing, pump, and grow-light control; an <b>ESP32</b> hosts a WiFi dashboard with live<br>
   moisture & power graphs, a watering log, and manual controls — talking to each other over UART JSON.
 </p>
@@ -31,7 +31,7 @@
   (`ws28xx.c`), with full / dimmed brightness modes.
 - ⚡ **Overcurrent protection** — an INA219 power monitor watches grow-light current and flashes an
   error LED if it exceeds 1.5 A.
-- 🧵 **FreeRTOS firmware** — a 6-state machine (Init, Auto, Manual, MoistureUpdate, PowerCheck, Tick)
+- 🧵 **Bare-metal firmware + custom scheduler** — a 6-state machine (Init, Auto, Manual, MoistureUpdate, PowerCheck, Tick)
   schedules sensing, control, and UART comms concurrently.
 - 🔌 **UART JSON link** — the STM32 streams live readings (`{"MoistureLevel": 84.0}`) and accepts
   commands (`AUTO`, `MANUAL`, `LED_FULL`, `LED_DIM0`, `PUMP_ON`, `PUMP_OFF`).
@@ -42,7 +42,7 @@
 
 ```mermaid
 flowchart LR
-    subgraph STM32 [STM32L476 · FreeRTOS firmware]
+    subgraph STM32 [STM32L476 · bare-metal + custom scheduler]
         MS[Soil moisture · ADC] --> CORE[State machine]
         INA[INA219 · I2C] --> CORE
         CORE --> PUMP[Relay → water pump]
@@ -71,7 +71,7 @@ flowchart LR
 
 ```text
 src/
-├── STM32/   # STM32L476 firmware (STM32CubeIDE) — FreeRTOS, sensors, pump, WS2812B driver
+├── STM32/   # STM32L476 firmware (STM32CubeIDE) — custom cooperative scheduler (rtos.c), sensors, pump, WS2812B driver
 └── ESP32/   # ESP32 sketch — WiFi, WebSocket server, SPIFFS dashboard (HTML/CSS/JS)
 ```
 
@@ -98,7 +98,7 @@ Wire the STM32 ⇄ ESP32 UART (TX/RX + common ground) and power both rails befor
 
 | Layer | Tech |
 | ----- | ---- |
-| Firmware | C, FreeRTOS, STM32 HAL (STM32CubeIDE) |
+| Firmware | C, custom cooperative scheduler, STM32 HAL (STM32CubeIDE) |
 | Connectivity | ESP32, WiFi, WebSocket, SPIFFS |
 | Sensing | Capacitive moisture (ADC), INA219 (I2C) |
 | Actuation | Relay-driven pump, WS2812B grow lights |
